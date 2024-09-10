@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 		if comment.save
     redirect_to "/prototype/#{comment.prototype.id}"  # コメントと結びつくプロトタイプの詳細画面に遷移する
 		else
-		render :create, status: :unprocessable_entity
+		redirect_to "/prototype/#{comment.prototype.id}"
 	end
 end
 private

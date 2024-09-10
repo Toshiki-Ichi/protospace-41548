@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-	before_action :authenticate_user!, only: [:new,:destroy]
+	before_action :authenticate_user!, only: [:new,:edit,:destroy]
 	before_action :move_to_index, only: [:edit]
 
 	def index
@@ -50,7 +50,8 @@ class PrototypesController < ApplicationController
 	end
 
 	def move_to_index
-    unless user_signed_in?
+		@prototype =Prototype.find(params[:id])
+    unless current_user.id == @prototype.user.id
       redirect_to action: :index
     end
   end
